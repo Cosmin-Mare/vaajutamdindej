@@ -9,6 +9,6 @@ app.get("/", (req, res) => {
   res.render("index.ejs");
 });
 
-app.listen(process.env.PORT || port, () => {
+app.listen(process.env.PORT || port, "192.168.1.161", () => {
   console.log("Server open on port " + port);
 });
