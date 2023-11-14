@@ -41,7 +41,6 @@ footer {
   transition: background 0.2s ease-in-out;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
-
 .btn-primary-pink:hover,
 .btn-primary-pink:focus,
 .btn-primary-pink:active {
@@ -75,6 +74,12 @@ footer {
   padding-top: 20px;
   padding-bottom: 20px;
   gap: 15px;
+  text-align: center;
+}
+
+.motive-container {
+  padding-top: 0.8rem;
+  text-align: center;
 }
 
 .carousel-title {
@@ -87,6 +92,7 @@ footer {
   color: #e20074 !important;
   font-size: 20px;
   padding-top: 0.9rem;
+  transition: color 0.2s ease-in-out;
 }
 .motive:hover {
   color: #cb0068 !important;
@@ -156,6 +162,29 @@ svg {
   fill: white;
 }
 
+#projects {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  color: #e20074 !important;
+  transition: color 0.15s ease-in-out;
+}
+.card-title:hover {
+  color: #00b9cb !important;
+}
+
+.card-text {
+  font-size: 1.1rem;
+}
+
+.projects-container .col {
+  width: fit-content;
+}
+
 @media screen and (max-width: 700px) {
   .button-container {
     padding-left: 10% !important;
@@ -208,5 +237,11 @@ svg {
   .button-container {
     padding-left: 20% !important;
     padding-right: 20% !important;
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  #donate {
+    background-color: white;
   }
 }
