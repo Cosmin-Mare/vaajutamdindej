@@ -12,6 +12,7 @@
     class="carousel slide landscape"
     data-bs-ride="carousel"
     data-interval="10000"
+    data-bs-pause="false"
   >
     <div class="carousel-inner">
       <div class="carousel-item active">
@@ -87,49 +88,53 @@
   </div>
 </section>
 <section id="projects">
-  <div
-    class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 projects-container"
-  >
-    <div class="col">
-      <div class="card" style="width: 24rem">
-        <img src="images/card-img-1.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <a class="card-title" href="/">Am facut actiunea asta</a>
-
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-        </div>
+  <section class="text-center container">
+    <div class="row pt-5">
+      <div class="col-lg-6 col-md-8 mx-auto">
+        <h1 class="fw-light">Proiectele noastre</h1>
+        <p class="lead text-body-secondary">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec id arcu
+          tincidunt, condimentum erat nec, vestibulum diam. Vivamus fringilla
+          enim sit amet neque mattis sodales. Phasellus laoreet nibh ligula,
+          venenatis tristique orci lacinia sed. Fusce risus risus, sodales id
+          ornare quis, semper eget sapien
+        </p>
       </div>
     </div>
-
-    <div class="col">
-      <div class="card" style="width: 24rem">
-        <img src="images/card-img-1.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <a class="card-title" href="/">Am facut actiunea asta</a>
-
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-        </div>
+  </section>
+  <div class="projects-container container-fluid">
+    <div class="card">
+      <img src="images/card-img-1.png" class="card-img-top" alt="" />
+      <div class="card-body">
+        <a class="card-title">Card title</a>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
       </div>
     </div>
-
-    <div class="col">
-      <div class="card" style="width: 24rem">
-        <img src="images/card-img-1.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <a class="card-title" href="/">Am facut actiunea asta</a>
-          <p class="card-text">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </p>
-        </div>
+    <div class="card">
+      <img src="images/card-img-1.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <a class="card-title">Card title</a>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
+      </div>
+    </div>
+    <div class="card">
+      <img src="images/card-img-1.png" class="card-img-top" alt="..." />
+      <div class="card-body">
+        <a class="card-title">Card title</a>
+        <p class="card-text">
+          Some quick example text to build on the card title and make up the
+          bulk of the card's content.
+        </p>
       </div>
     </div>
   </div>
 </section>
+<section id="newsletter"></section>
+
 <%- include("footer.ejs") %>
