@@ -1,7 +1,6 @@
 body {
   font-family: "Source Sans 3", sans-serif;
 }
-
 .navbar {
   margin-left: auto;
   margin-right: auto;
@@ -26,14 +25,23 @@ body {
   color: white !important;
 }
 
-.navbar-container {
-  background-color: white !important;
-}
-
 #main {
   position: relative !important;
   height: fit-content;
   margin-bottom: -2px;
+}
+
+.projects-title {
+  font-family: "Public Sans", sans-serif;
+  color: #e20074;
+}
+
+hr {
+  margin: 0;
+  background-color: #cb0068;
+  color: #cb0068;
+  opacity: 0.5;
+  padding: 0.5px;
 }
 
 #donate {
@@ -87,7 +95,7 @@ footer {
 }
 
 .button-container {
-  justify-content: space-between !important;
+  justify-content: space-around;
   padding-top: 20px;
   padding-bottom: 20px;
   gap: 15px;
@@ -101,7 +109,7 @@ footer {
 
 .carousel-title {
   font-family: "Public Sans", sans-serif;
-  font-size: 70pt;
+  font-size: 55pt;
   margin-bottom: 0px;
 }
 
@@ -121,23 +129,26 @@ footer {
 
 .carousel-subtitle {
   font-weight: bold;
-  font-size: 40pt;
+  font-size: 35pt;
   margin-bottom: 0px;
 }
 .carousel-container {
   position: absolute !important;
-  left: 40px;
-  top: 250px;
+  bottom: 0;
+  left: 0px;
+  width: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 0;
+  padding-right: 0;
   margin: 0;
-  width: fit-content;
   height: fit-content;
   z-index: 100;
   display: flex;
   flex-direction: column;
-  align-items: start;
-  justify-content: start;
+  align-items: center;
+  justify-content: center;
   color: #cb0068;
-  padding: 40px;
 }
 
 .projects-container .col {
@@ -196,14 +207,14 @@ svg {
   fill: white;
 }
 .card-title {
+  font-family: "Public Sans", sans-serif;
   font-size: 1.5rem;
   color: #e20074 !important;
-  transition: color 0.15s ease-in-out;
+  text-decoration: none;
 }
 .card-title:hover {
   color: #00b9cb !important;
 }
-
 .card-text {
   font-size: 1.1rem;
 }
@@ -262,7 +273,7 @@ svg {
     padding-right: 0;
   }
   .carousel-title {
-    font-size: 45pt;
+    font-size: 35pt;
   }
   .carousel-subtitle {
     font-size: 25pt;
@@ -316,5 +327,20 @@ svg {
 @media screen and (max-width: 900px) {
   .carousel-item > img {
     height: calc(100vh - 120px) !important;
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .button-container {
+    justify-content: space-between;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .carousel-title {
+    font-size: 28pt;
+  }
+  .carousel-subtitle {
+    font-size: 20pt;
   }
 }
