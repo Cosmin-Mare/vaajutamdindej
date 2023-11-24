@@ -3,12 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@700&family=Source+Sans+3:wght@400;600&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -32,7 +30,7 @@
                 height="44"
               />
             </a>
-            <button class="btn btn-primary-pink-round portrait">Doneaza</button>
+            <button class="btn btn-primary-pink-round portrait" onclick="location.href='/donez'">Donează</button>
             <button
               class="navbar-toggler"
               type="button"
@@ -53,35 +51,27 @@
                   >
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Features</a>
+                  <a class="nav-link" href="#">Proiecte</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">Pricing</a>
+                  <a class="nav-link" href="#">Noutăți</a>
                 </li>
-                <li class="nav-item dropdown">
-                  <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    role="button"
-                    data-bs-toggle="dropdown"
-                    aria-expanded="false"
-                  >
-                    Dropdown link
-                  </a>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li>
-                      <a class="dropdown-item" href="#">Another action</a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">Something else here</a>
-                    </li>
-                  </ul>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Parteneri</a>
                 </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/motive">Motive Să Ajuți</a>
+                </li>
+                <button type="button" class="btn btn-secondary-pink portrait" onclick="location.href='/cum-pot-ajuta'">
+                  Cum poți ajuta
+                </button>
               </ul>
             </div>
           </div>
-          <button class="btn btn-primary-pink-round landscape">Doneaza</button>
+          <button type="button" class="btn btn-secondary-pink landscape" onclick="location.href='/cum-pot-ajuta'">
+                  Cum Poți Ajuta
+            </button>
+          <button class="btn btn-primary-pink-round landscape" onclick="location.href='/donez'">Donează</button>
         </nav>
       </div>
     </section>
