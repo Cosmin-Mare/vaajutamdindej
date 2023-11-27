@@ -1,0 +1,66 @@
+<%- include("header.ejs") %>
+<section id="description">
+  <div class="px-4 mt-5 text-center">
+    <h1 class="display-5 fw-bold text-body-emphasis projects-title">Noutăți</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum
+        magna magna, quis interdum dolor sodales dapibus. Vivamus sed rhoncus
+        nunc. Quisque pulvinar nibh sed sapien efficitur, et auctor nulla
+        volutpat.
+      </p>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <!-- <button
+          type="button"
+          class="btn btn-primary-pink-round btn-lg px-4 gap-3 mx-5"
+        >
+          Donează
+        </button>
+        <button type="button" class="btn btn-secondary-pink btn-lg px-4 mx-5">
+          Cum poți ajuta
+        </button> -->
+      </div>
+    </div>
+  </div>
+</section>
+<section id="posts">
+  <div class="album py-5 bg-body-tertiary">
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 post-album">
+        <% posts.forEach(post => { %>
+        <div class="col">
+          <div class="card shadow-sm">
+            <a class="post-img-link" href="post/<%= post.id %>">
+              <img src="/images/posts/<%= post.id %>/thumbnail.jpg" />
+            </a>
+            <div class="card-body">
+              <h2 class="card-text"><%= post.title %></h2>
+              <div class="d-flex justify-content-between align-items-center">
+                <a class="text-body-secondary" href="<%= post.link %>"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    x="0px"
+                    y="0px"
+                    width="30px"
+                    height="24px"
+                    viewBox="0 0 50 50"
+                    style="fill: #cb0069c1; margin-right: 10px"
+                  >
+                    <path
+                      d="M25,3C12.85,3,3,12.85,3,25c0,11.03,8.125,20.137,18.712,21.728V30.831h-5.443v-5.783h5.443v-3.848 c0-6.371,3.104-9.168,8.399-9.168c2.536,0,3.877,0.188,4.512,0.274v5.048h-3.612c-2.248,0-3.033,2.131-3.033,4.533v3.161h6.588 l-0.894,5.783h-5.694v15.944C38.716,45.318,47,36.137,47,25C47,12.85,37.15,3,25,3z"
+                    ></path>
+                  </svg>
+                </a>
+                <small class="text-body-secondary"
+                  ><%= post.date.toLocaleDateString('en-GB') %></small
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+        <% }) %>%>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include("footer.ejs") %>
