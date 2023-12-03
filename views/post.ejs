@@ -1,19 +1,48 @@
 <%- include("header.ejs") %>
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1><%= title %></h1>
-      <p><%= content %></p>
+<section id="main">
+  <div
+    class="container-fluid carousel-container bg-white"
+    style="--bs-bg-opacity: 0.65"
+  >
+    <h1 class="post-title"><%= title %></h1>
+  </div>
+  <img
+    src="<%= thumbnail %>"
+    class="d-block w-100 header-img"
+    id="carousel-img-1"
+    alt="..."
+  />
+</section>
+
+<section class="post-content">
+  <div class="my-5">
+    <div class="col-lg-11 col-sm-11 col-10 mx-auto">
+      <% contents.forEach(content => { %>
+      <p class="lead mb-4"><%= content %></p>
+      <% }) %>
+      <div class="d-grid gap-2 d-sm-flex post-button-container">
+        <button
+          type="button"
+          class="btn btn-primary-pink-round btn-lg px-4 gap-3 mx-5 mx-lg-0 mx-md-0 mx-sm-0"
+        >
+          Donează
+        </button>
+        <button type="button" class="btn btn-secondary-pink btn-lg px-4 mx-5">
+          Cum poți ajuta
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</section>
 
-<div class="photos">
-  <% photos.forEach(function(photo){ %>
-  <div class="photo">
-    <img src="<%= photo %>" />
+<div class="photos-container">
+  <div class="photos">
+    <% photos.forEach(function(photo){ %>
+    <div class="photo">
+      <img src="<%= photo %>" />
+    </div>
+    <% }); %>
   </div>
-  <% }); %>
 </div>
 
 <%- include("footer.ejs") %>

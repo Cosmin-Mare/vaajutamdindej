@@ -1,78 +1,149 @@
 <%- include("header.ejs") %>
-<section id="main">
-  <div
-    class="container-fluid carousel-container bg-white"
-    style="--bs-bg-opacity: 0.65"
-  >
-    <h1 class="carousel-title">Vă Ajutăm din Dej</h1>
-    <h2 class="carousel-subtitle">Împreună Dăruim zâmbete</h2>
-  </div>
-
-  <div
-    class="carousel slide landscape"
-    data-bs-ride="carousel"
-    data-interval="10000"
-    data-bs-pause="false"
-  >
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img
-          src="images/carousel/landscape/carousel-img-1.jpg"
-          class="d-block w-100"
-          id="carousel-img-1"
-          alt="..."
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="images/carousel/landscape/carousel-img-2.jpg"
-          class="d-block w-100"
-          id="carousel-img-1"
-          alt="..."
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="images/carousel/landscape/carousel-img-3.jpg"
-          class="d-block w-100"
-          id="carousel-img-1"
-          alt="..."
-        />
+<section id="donez">
+  <div class="px-4 my-5 text-center">
+    <img
+      class="d-block mx-auto mb-4"
+      src="/images/logo.png"
+      alt=""
+      width="100"
+      height="100"
+    />
+    <h1 class="display-5 fw-bold text-body-emphasis projects-title">Titlu</h1>
+    <div class="col-lg-6 mx-auto">
+      <p class="lead mb-4">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed elementum
+        magna magna, quis interdum dolor sodales dapibus. Vivamus sed rhoncus
+        nunc. Quisque pulvinar nibh sed sapien efficitur, et auctor nulla
+        volutpat
+      </p>
+      <div class="donation-options-container">
+        <h2 class="display-5 fw-bold text-body-emphasis donation-subtitle">
+          Alege cu cat vrei sa contribui
+        </h2>
+        <div class="form-check recurent-form">
+          <input
+            class="form-check-input recurent-check"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            Donație recurentă
+          </label>
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary-pink-round donation-option"
+          onclick="redirectToDonationPage(200)"
+        >
+          200 RON
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary-pink-round donation-option"
+          onclick="redirectToDonationPage(100)"
+        >
+          100 RON
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary-pink-round donation-option"
+          onclick="redirectToDonationPage(50)"
+        >
+          50 RON
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary-pink-round donation-option"
+          onclick="redirectToDonationPage(25)"
+        >
+          25 RON
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary-pink-round donation-option"
+          onclick="redirectToDonationPage(10)"
+        >
+          10 RON
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary-pink-round donation-option"
+          onclick="redirectToDonationPage(-1)"
+        >
+          Altă sumă
+        </button>
       </div>
     </div>
   </div>
-
-  <div
-    class="carousel slide portrait"
-    data-bs-ride="carousel"
-    data-interval="10000"
-  >
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <img
-          src="images/carousel/portrait/carousel-img-1.jpg"
-          class="d-block w-100"
-          id="carousel-img-1"
-          alt="..."
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="images/carousel/portrait/carousel-img-2.jpg"
-          class="d-block w-100"
-          id="carousel-img-1"
-          alt="..."
-        />
-      </div>
-      <div class="carousel-item">
-        <img
-          src="images/carousel/portrait/carousel-img-3.jpg"
-          class="d-block w-100"
-          id="carousel-img-1"
-          alt="..."
-        />
-      </div>
-    </div>
-  </div>
+  <script>
+    function redirectToDonationPage(amount) {
+      const recurrentCheck = document.querySelector(".recurent-check");
+      let isReccurent = recurrentCheck.checked;
+      console.log(isReccurent);
+      switch (amount) {
+        case 200:
+          if (isReccurent) {
+            window.open("https://buy.stripe.com/9AQ29LbOr8LI3qEfZ8", "_blank");
+          } else {
+            window.open(
+              "https://donate.stripe.com/8wM3dP9Gj0fc8KY004",
+              "_blank"
+            );
+          }
+          break;
+        case 100:
+          if (isReccurent) {
+            window.open("https://buy.stripe.com/dR64hTdWz7HE9P2bIR", "_blank");
+          } else {
+            window.open(
+              "https://donate.stripe.com/fZeeWxbOrgea3qE147",
+              "_blank"
+            );
+          }
+          break;
+        case 50:
+          if (isReccurent) {
+            window.open("https://buy.stripe.com/dR6cOpg4Hd1Y0es008", "_blank");
+          } else {
+            window.open(
+              "https://donate.stripe.com/9AQ15H3hVbXUgdqcMO",
+              "_blank"
+            );
+          }
+          break;
+        case 25:
+          if (isReccurent) {
+            window.open("https://buy.stripe.com/5kAbKl9Gj0fc0es4gn", "_blank");
+          } else {
+            window.open(
+              "https://donate.stripe.com/dR6g0B19NbXUf9m8wx",
+              "_blank"
+            );
+          }
+          break;
+        case 10:
+          if (isReccurent) {
+            window.open("https://buy.stripe.com/14k7u54lZaTQe5i14a", "_blank");
+          } else {
+            window.open(
+              "https://donate.stripe.com/aEU3dP9Gj2nkf9m144",
+              "_blank"
+            );
+          }
+          break;
+        default:
+          if (isReccurent) {
+            alert("Nu puteți face donații recurente pentru alte sume");
+          } else {
+            window.open(
+              "https://donate.stripe.com/6oE8y9g4H7HE8KY9AF",
+              "_blank"
+            );
+          }
+          break;
+      }
+    }
+  </script>
 </section>
 <%- include("footer.ejs") %>

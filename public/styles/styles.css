@@ -1,13 +1,15 @@
 body {
   font-family: "Source Sans 3", sans-serif;
 }
+#header {
+  background-color: #f8f9fa !important;
+}
 .navbar {
   padding-bottom: 0;
   padding-top: 0;
   color: black;
   margin-left: auto;
   margin-right: auto;
-  background-color: inherit !important;
 }
 
 .navbar-collapse {
@@ -341,6 +343,89 @@ svg {
   flex-direction: column;
   justify-content: space-around;
 }
+
+.post-title {
+  font-size: 2.5rem;
+  text-align: center;
+}
+
+.post-button-container .btn {
+  width: 200px !important;
+}
+
+.photos-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 100px;
+}
+.photos {
+  width: 98%;
+  display: grid;
+  justify-content: space-evenly;
+  grid-template-columns: 31% 31% 31%;
+  gap: 2%;
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: 0.5em 0.5em 8px rgba(0, 0, 0, 0.25);
+  border: #e20074 2px solid;
+}
+
+.donation-subtitle {
+  color: #e20074 !important  ;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0;
+}
+
+.donation-options-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.donation-option {
+  margin-right: 10%;
+  margin-left: 10%;
+  font-size: 30px !important;
+}
+
+.x-bar {
+  top: 0px;
+  z-index: 1000;
+  transition: all 0.5s;
+  position: fixed;
+  width: 100%;
+}
+
+.x-bar.scrollUp {
+  transform: translateY(-65px);
+}
+#description {
+  padding-top: 50px;
+}
+#main {
+  margin-top: 54px !important;
+}
+.recurent-check {
+  float: none !important;
+  border: #e20074 1px solid !important;
+}
+.recurent-check:checked {
+  background-color: #e20074 !important;
+}
+.recurent-form {
+  display: flex;
+  padding: 0 !important;
+  margin-right: 10%;
+  margin-left: calc(10% + 1.8rem);
+  gap: 5px;
+  font-size: 1.2rem;
+  justify-content: flex-start !important;
+}
 @media screen and (max-width: 700px) {
   .motiv-text p {
     font-size: 1.4rem !important;
@@ -361,6 +446,19 @@ svg {
   .carousel-item > img,
   .header-img {
     height: 87.5vh !important;
+  }
+  .post-title {
+    font-size: 2rem;
+  }
+  .post-button-container .btn {
+    width: auto !important;
+  }
+  .photos-container {
+    margin-bottom: 300px;
+  }
+  .photos {
+    grid-template-columns: 90%;
+    gap: 1%;
   }
 }
 
