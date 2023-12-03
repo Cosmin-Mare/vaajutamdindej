@@ -77,7 +77,12 @@
 </section>
 <section id="donate">
   <div class="container d-flex button-container flex-wrap">
-    <button class="btn btn-primary-pink btn-donate">Donează acum</button>
+    <button
+      class="btn btn-primary-pink btn-donate"
+      onclick="window.location.href='/donez'"
+    >
+      Donează acum
+    </button>
     <button class="btn btn-primary-teal" onclick="location.href='/noutati'">
       Noutăți
     </button>
@@ -91,7 +96,7 @@
 </section>
 <hr />
 <section id="projects">
-  <section class="text-center container">
+  <section class="text-center container" id="call-to-action">
     <div class="row pt-5">
       <div class="col-lg-6 col-md-8 mx-auto">
         <h1 class="fw-light projects-title">Proiectele noastre</h1>
@@ -104,39 +109,23 @@
         </p>
       </div>
     </div>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center py-5 pt-2">
+      <button
+        type="button"
+        class="btn btn-primary-pink-round btn-lg px-4 gap-3 mx-5"
+        onclick="window.location.href='/proiecte'"
+      >
+        Proiectele noastre
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary-pink btn-lg px-4 mx-5"
+        onclick="window.location.href='/noutati'"
+      >
+        Noutăți
+      </button>
+    </div>
   </section>
-  <div class="projects-container container-fluid">
-    <div class="card">
-      <img src="images/card-img-1.png" class="card-img-top" alt="" />
-      <div class="card-body">
-        <a class="card-title">Card title</a>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="images/card-img-1.png" class="card-img-top" alt="..." />
-      <div class="card-body">
-        <a class="card-title">Card title</a>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-      </div>
-    </div>
-    <div class="card">
-      <img src="images/card-img-1.png" class="card-img-top" alt="..." />
-      <div class="card-body">
-        <a class="card-title">Card title</a>
-        <p class="card-text">
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </p>
-      </div>
-    </div>
-  </div>
 </section>
 <section id="newsletter"></section>
 

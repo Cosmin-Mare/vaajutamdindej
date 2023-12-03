@@ -90,6 +90,10 @@ app.get("/noutati", (req, res) => {
   res.render("noutati.ejs", { posts: posts });
 });
 
+app.get("/proiecte", (req, res) => {
+  res.render("proiecte.ejs");
+});
+
 app.listen(process.env.PORT || port, "192.168.1.161", () => {
   console.log("Server open on 192.168.1.161:" + port);
 });
