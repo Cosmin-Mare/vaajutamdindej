@@ -31,6 +31,24 @@ db.query("SELECT * FROM posts ORDER BY id ASC", (err, res) => {
     posts.reverse();
     max_id = posts.length;
   }
+});
+
+let members = [];
+db.query("SELECT * FROM members ORDER BY id ASC ", (err, res) => {
+  if (err) {
+    console.log(err);
+  } else {
+    members = res.rows;
+  }
+});
+
+let projects = [];
+db.query("SELECT * FROM projects ORDER BY id ASC ", (err, res) => {
+  if (err) {
+    console.log(err);
+  } else {
+    projects = res.rows;
+  }
   db.end();
 });
 
@@ -50,7 +68,19 @@ app.get("/", (req, res) => {
 });
 
 app.get("/despre-noi", (req, res) => {
-  res.render("despre-noi.ejs");
+  let council = [];
+  let notCouncil = [];
+  for (let i = 0; i < members.length; i++) {
+    if (members[i].is_council == 1) {
+      council.push(members[i]);
+    } else {
+      notCouncil.push(members[i]);
+    }
+  }
+  res.render("despre-noi.ejs", {
+    council: council,
+    notCouncil: notCouncil,
+  });
 });
 
 app.get("/motive", (req, res) => {
@@ -65,7 +95,7 @@ app.get("/cum-pot-ajuta", (req, res) => {
   res.render("ajut.ejs");
 });
 
-app.get("/post/:id", (req, res) => {
+app.get("/noutate/:id", (req, res) => {
   const post = getPostById(max_id - req.params.id);
   const title = post.title;
   const content = post.content;
@@ -91,9 +121,52 @@ app.get("/noutati", (req, res) => {
 });
 
 app.get("/proiecte", (req, res) => {
-  res.render("proiecte.ejs");
+  let actual = [];
+  let recurrent = [];
+  let past = [];
+
+  for (let i = 0; i < projects.length; i++) {
+    if (projects[i].type == "a") {
+      actual.push(projects[i]);
+    } else if (projects[i].type == "r") {
+      recurrent.push(projects[i]);
+    } else {
+      past.push(projects[i]);
+    }
+  }
+  res.render("proiecte.ejs", {
+    actual: actual,
+    recurrent: recurrent,
+    past: past,
+  });
 });
 
+app.get("/proiect/:id", (req, res) => {
+  const project = getProjectById(req.params.id);
+  const title = project.title;
+  const content = project.content;
+  const photos = [];
+  const numberOfPhotos =
+    getNumberOfFilesInFolder("public/images/projects/" + project.id) - 1;
+  for (let i = 0; i < numberOfPhotos; i++) {
+    photos.push("/images/projects/" + project.id + "/" + i + ".jpg");
+  }
+  const thumbnail = "/images/projects/" + project.id + "/thumbnail.jpg";
+  const contents = content.split("\n");
+  res.render("project.ejs", {
+    title: title,
+    contents: contents,
+    photos: photos,
+    thumbnail: thumbnail,
+  });
+});
+
+app.get("/parteneri", (req, res) => {
+  res.render("parteneri.ejs");
+});
+app.get("/contact", (req, res) => {
+  res.render("contact.ejs");
+});
 app.listen(process.env.PORT || port, "192.168.1.161", () => {
   console.log("Server open on 192.168.1.161:" + port);
 });
@@ -102,6 +175,14 @@ function getPostById(id) {
   for (let i = 0; i < posts.length; i++) {
     if (posts[i].id == max_id - id) {
       return posts[i];
+    }
+  }
+}
+
+function getProjectById(id) {
+  for (let i = 0; i < projects.length; i++) {
+    if (projects[i].id == id) {
+      return projects[i];
     }
   }
 }

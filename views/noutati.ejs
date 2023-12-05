@@ -9,18 +9,11 @@
         nunc. Quisque pulvinar nibh sed sapien efficitur, et auctor nulla
         volutpat.
       </p>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <!-- <button
-          type="button"
-          class="btn btn-primary-pink-round btn-lg px-4 gap-3 mx-5"
-        >
-          Donează
-        </button>
-        <button type="button" class="btn btn-secondary-pink btn-lg px-4 mx-5">
-          Cum poți ajuta
-        </button> -->
-      </div>
+      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center"></div>
     </div>
+    <form class="row g-3">
+      <div class=""></div>
+    </form>
   </div>
 </section>
 <section id="posts">
@@ -30,7 +23,7 @@
         <% posts.forEach(post => { %>
         <div class="col">
           <div class="card shadow-sm">
-            <a class="post-img-link" href="post/<%= post.id %>">
+            <a class="post-img-link" href="/noutate/<%= post.id %>">
               <img src="/images/posts/<%= post.id %>/thumbnail.jpg" />
             </a>
             <div class="card-body">

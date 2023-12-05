@@ -1,0 +1,77 @@
+<%- include("header.ejs") %>
+<style>
+  @media screen and (min-width: 769px) {
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+</style>
+<section id="main">
+  <div class="contact-grid">
+    <div class="contact-info">
+      <div class="contact-text">
+        <p>
+          Asociația Vă Ajutăm din Dej, cu sediul principal în Dej, strada
+          Unirii, nr. 13, Bl. D1, Ap. 11, Jud. Cluj.
+        </p>
+        <p>
+          Facebook:
+          <a href="https://www.facebook.com/VoluntariDejeni" target="_blank"
+            >Asociația "Vă ajutăm din Dej"</a
+          >
+        </p>
+        <p>
+          Email:
+          <a href="mailto:vaajutamdindej@gmail.com">vaajutamdindej@gmail.com</a>
+        </p>
+        <p>Telefon: <a href="tel:+40723290245">+40723290245</a></p>
+      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2714.203889298232!2d23.885043788884076!3d47.13427143386159!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4749b8a34bcf8e1b%3A0x7ed9145ecd419435!2sStrada%20Unirii%2013%2C%20Dej%20405200!5e0!3m2!1sro!2sro!4v1701691135945!5m2!1sro!2sro"
+        class="map"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+      ></iframe>
+    </div>
+    <div class="contact-form">
+      <h2 class="projects-title">Contactează-ne</h2>
+      <form class="row g-3">
+        <div class="col-12 col-md-6">
+          <label for="Nume" class="form-label">Nume</label>
+          <input type="name" class="form-control" id="Nume" />
+        </div>
+        <div class="col-12 col-md-6">
+          <label for="Prenume" class="form-label">Prenume</label>
+          <input type="name" class="form-control" id="Prenume" />
+        </div>
+        <div class="col-12">
+          <label for="email" class="form-label">Email</label>
+          <input type="text" class="form-control" id="email" />
+        </div>
+        <div class="col-12">
+          <label for="tel" class="form-label">Număr de telefon</label>
+          <input type="text" class="form-control" id="tel" />
+        </div>
+        <div class="col-12">
+          <label for="mesaj" class="form-label">Mesaj</label>
+          <textarea class="form-control" id="mesaj" rows="3"></textarea>
+        </div>
+        <div class="col-12">
+          <button
+            type="submit"
+            class="btn btn-primary-pink-round"
+            style="width: 100%; font-size: 20px"
+          >
+            Trimite
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<%- include("footer.ejs") %>

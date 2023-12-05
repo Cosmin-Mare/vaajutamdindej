@@ -6,20 +6,17 @@
   <div class="album projects-album-wrapper">
     <div class="container">
       <div class="row row-cols-1 row-cols-md-2 g-5 actual-projects-album">
+        <% actual.forEach(project => { %>
         <div class="col">
           <div class="card shadow-sm">
-            <a class="post-img-link" href="#">
+            <a class="post-img-link" href="/proiect/<%= project.id %>">
               <img
-                src="/images/projects/idv/thumbnail.jpg"
+                src="/images/projects/<%= project.id %>/thumbnail.jpg"
                 style="object-fit: fill"
               />
             </a>
             <div class="card-body">
-              <h2 class="card-text">
-                Împreună dăruim viață, un proiect dedicat susținerii și
-                promovării unei campanii recurente de donare de sânge, inițat
-                împreună cu Centrul de Transfuzie Sanguină Cluj-Napoca
-              </h2>
+              <h2 class="card-text"><%= project.title %></h2>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="project-buttons">
                   <button
@@ -41,42 +38,7 @@
             </div>
           </div>
         </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <a class="post-img-link" href="#">
-              <img
-                src="/images/projects/sansa/thumbnail.jpg"
-                style="object-fit: fill"
-              />
-            </a>
-            <div class="card-body">
-              <h2 class="card-text">
-                O Șansă la Viață, un proiect prin care dorim să organizăm,
-                împreună cu Serviciul de Ambulanță Cluj – substația Dej, cursuri
-                de prim ajutor pentru dejeni.
-              </h2>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="project-buttons">
-                  <button
-                    type="button"
-                    class="btn btn-primary-pink-round"
-                    onclick="window.location.href='/donez'"
-                  >
-                    Doneaza
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary-pink"
-                    onclick="window.location.href='/cum-pot-ajuta'"
-                  >
-                    Cum poți ajuta
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <% }) %>
       </div>
     </div>
   </div>
@@ -87,19 +49,17 @@
   <div class="album projects-album-wrapper">
     <div class="container">
       <div class="row row-cols-1 row-cols-md-2 g-5 actual-projects-album">
+        <% recurrent.forEach(project => { %>
         <div class="col">
           <div class="card shadow-sm">
-            <a class="post-img-link" href="#">
+            <a class="post-img-link" href="/proiect/<%= project.id %>">
               <img
-                src="/images/projects/craciun/thumbnail.jpg"
+                src="/images/projects/<%= project.id %>/thumbnail.jpg"
                 style="object-fit: fill"
               />
             </a>
             <div class="card-body">
-              <h2 class="card-text">
-                De Crăciun, dăruiește un zâmbet! – proiect dedicat
-                beneficiarilor în preajma Crăciunului
-              </h2>
+              <h2 class="card-text"><%= project.title %></h2>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="project-buttons">
                   <button
@@ -121,73 +81,7 @@
             </div>
           </div>
         </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <a class="post-img-link" href="#">
-              <img
-                src="/images/projects/primavara/thumbnail.jpg"
-                style="object-fit: fill"
-              />
-            </a>
-            <div class="card-body">
-              <h2 class="card-text">
-                Bucuria Primăverii – proiect dedicat beneficiarilor în preajma
-                Sărbătorilor Pascale
-              </h2>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="project-buttons">
-                  <button
-                    type="button"
-                    class="btn btn-primary-pink-round"
-                    onclick="window.location.href='/donez'"
-                  >
-                    Doneaza
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary-pink"
-                    onclick="window.location.href='/cum-pot-ajuta'"
-                  >
-                    Cum poți ajuta
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <a class="post-img-link" href="#">
-              <img src="/images/projects/scoala/thumbnail.jpg" />
-            </a>
-            <div class="card-body">
-              <h2 class="card-text">
-                Înapoi la școală – proiect dedicat copiilor beneficiarilor, prin
-                care îi ajutăm să înceapă mai ușor anul școlar
-              </h2>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="project-buttons">
-                  <button
-                    type="button"
-                    class="btn btn-primary-pink-round"
-                    onclick="window.location.href='/donez'"
-                  >
-                    Doneaza
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary-pink"
-                    onclick="window.location.href='/cum-pot-ajuta'"
-                  >
-                    Cum poți ajuta
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <% }) %>
       </div>
     </div>
   </div>
@@ -198,16 +92,17 @@
   <div class="album projects-album-wrapper">
     <div class="container">
       <div class="row row-cols-1 row-cols-md-2 g-5 actual-projects-album">
+        <% past.forEach(project => { %>
         <div class="col">
           <div class="card shadow-sm">
-            <a class="post-img-link" href="#">
-              <img src="/images/projects/scoala_vara/thumbnail.jpg" />
+            <a class="post-img-link" href="/proiect/<%= project.id %>">
+              <img
+                src="/images/projects/<%= project.id %>/thumbnail.jpg"
+                style="object-fit: fill"
+              />
             </a>
             <div class="card-body">
-              <h2 class="card-text">
-                “Explorăm și învățăm” – Școală de vară în colaborare cu Școala
-                Gimnazială Nireș și Primăria Comunei Mica
-              </h2>
+              <h2 class="card-text"><%= project.title %></h2>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="project-buttons">
                   <button
@@ -229,70 +124,7 @@
             </div>
           </div>
         </div>
-
-        <div class="col">
-          <div class="card shadow-sm">
-            <a class="post-img-link" href="#">
-              <img src="/images/projects/scoala_vara2/thumbnail.jpg" />
-            </a>
-            <div class="card-body">
-              <h2 class="card-text">
-                Împreună împlinim Vise – o școală de vară, inițiativă care are
-                ca scop să aducă bucurie, educație și experiențe de neuitat
-                copiilor din medii dezavantajate.
-              </h2>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="project-buttons">
-                  <button
-                    type="button"
-                    class="btn btn-primary-pink-round"
-                    onclick="window.location.href='/donez'"
-                  >
-                    Doneaza
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary-pink"
-                    onclick="window.location.href='/cum-pot-ajuta'"
-                  >
-                    Cum poți ajuta
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm">
-            <a class="post-img-link" href="#">
-              <img src="/images/projects/ucraina/thumbnail.jpg" />
-            </a>
-            <div class="card-body">
-              <h2 class="card-text">
-                Dejul – Împreună pentru Ucraina – cel mai amplu proiect al
-                nostru, dedicat vecinilor noștri afectați de război
-              </h2>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="project-buttons">
-                  <button
-                    type="button"
-                    class="btn btn-primary-pink-round"
-                    onclick="window.location.href='/donez'"
-                  >
-                    Doneaza
-                  </button>
-                  <button
-                    type="button"
-                    class="btn btn-secondary-pink"
-                    onclick="window.location.href='/cum-pot-ajuta'"
-                  >
-                    Cum poți ajuta
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+        <% }) %>
       </div>
     </div>
   </div>

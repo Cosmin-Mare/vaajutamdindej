@@ -101,4 +101,34 @@
     </div>
   </div>
 </section>
+<section id="team">
+  <div class="team-header">
+    <h2 class="projects-title">Echipa</h2>
+    <h3 class="projects-title">Consiliul Director</h3>
+  </div>
+  <div class="team-grid cd">
+    <% council.forEach(member => { %>
+    <div class="member">
+      <img src="/images/members/<%= member.name.replaceAll(" ", "_") %>.jpg"
+      class="pb-2">
+      <h2><%= member.name %></h2>
+      <h3><%= member.status %></h3>
+    </div>
+    <% }) %>
+  </div>
+  <div class="members-header">
+    <h3 class="projects-title">Membrii asociației</h3>
+  </div>
+
+  <div class="team-grid cd">
+    <% notCouncil.forEach(member => { %>
+    <div class="member">
+      <img src="/images/members/<%= member.name.replaceAll(" ", "_") %>.jpg"
+      class="pb-2"/>
+      <h2><%= member.name %></h2>
+      <h3><%= member.status %></h3>
+    </div>
+    <% }) %>
+  </div>
+</section>
 <%- include("footer.ejs") %>
