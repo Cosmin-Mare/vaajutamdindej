@@ -3,6 +3,7 @@ import pg from "pg";
 import fs from "fs";
 import { fileURLToPath } from "url";
 import path from "path";
+import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -10,6 +11,30 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const port = 3000;
 const postPhotosPath = "public/images/posts/";
+
+const textAndCoordinates = {
+  nume: [65, 160],
+  prenume: [65, 182],
+  strada: [65, 205],
+  numar: [287, 205],
+  initialaTatalui: [295, 160],
+  cnp: [337, 168],
+  email: [364, 194],
+  telefon: [365, 220],
+  judet: [254, 227],
+  localitate: [67, 249],
+  doiAni: [325, 415],
+};
+
+const pdfDoc = await PDFDocument.load(fs.readFileSync("Formular_donatie.pdf"));
+const semnaturaBytes = fs.readFileSync("logo.png");
+const image = await pdfDoc.embedPng(semnaturaBytes);
+const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
+const fontSize = 11;
+const pages = pdfDoc.getPages();
+const firstPage = pages[0];
+
+const pageHeight = firstPage.getHeight();
 
 const db = new pg.Client({
   user: "postgres",
@@ -56,13 +81,6 @@ app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const calculateOrderAmount = (items) => {
-  // Replace this constant with a calculation of the order's amount
-  // Calculate the order total on the server to prevent
-  // people from directly manipulating the amount on the client
-  return 1400;
-};
-
 app.get("/", (req, res) => {
   res.render("index.ejs");
 });
@@ -93,6 +111,86 @@ app.get("/donez", (req, res) => {
 
 app.get("/cum-pot-ajuta", (req, res) => {
   res.render("ajut.ejs");
+});
+
+app.post("/cum-pot-ajuta", (req, res) => {
+  console.log(req.body);
+
+  if (validCNP(req.body.cnp) == false) {
+    res.render("ajut.ejs", { cnpInvalid: true });
+    return;
+  }
+  const nume = req.body.nume;
+  const prenume = req.body.prenume;
+  const email = req.body.email;
+  const telefon = req.body.telefon;
+  const initiala = req.body.initiala;
+  const cnp = req.body.cnp;
+  const judet = req.body.judet;
+  const localitate = req.body.localitate;
+  const strada = req.body.strada;
+  const numar = req.body.numar;
+  const ani = req.body.an;
+  const semnatura = req.body.signature;
+  if (semnatura === undefined) {
+    res.render("ajut.ejs", { semnaturaInvalida: true });
+    return;
+  }
+  var cnp1 = "";
+  for (var i = 0; i < cnp.length; i++) {
+    cnp1 += cnp[i] + "    ";
+  }
+  const data = {
+    nume: nume,
+    prenume: prenume,
+    strada: strada,
+    numar: numar,
+    initialaTatalui: initiala,
+    cnp: cnp1,
+    email: email,
+    telefon: telefon,
+    judet: judet,
+    localitate: localitate,
+    doiAni: ani == "on" ? "X" : "",
+  };
+
+  console.log("data", data);
+
+  for (const field of Object.keys(textAndCoordinates)) {
+    const [x, y] = textAndCoordinates[field];
+    let text = data[field];
+
+    firstPage.drawText(text, {
+      x,
+      y: pageHeight - y,
+      size: fontSize,
+      font: helveticaFont,
+      color: rgb(0, 0, 0),
+    });
+  }
+
+  // Step 1: Decode base64 to binary
+
+  var signature = semnatura.replace(/^data:image\/\w+;base64,/, "");
+  var buf = Buffer.from(signature, "base64");
+  fs.writeFileSync("image.png", buf, function (err) {
+    if (err) throw err;
+    console.log("File saved.");
+  });
+
+  var image = pdfDoc.embedPng(fs.readFileSync("image.png")).then((image) => {
+    firstPage.drawImage(image, {
+      x: 390,
+      y: 142,
+      width: 150,
+      height: 10,
+    });
+  });
+  const pdfBytes = pdfDoc.save().then((pdfBytes) => {
+    fs.writeFileSync("public/completat.pdf", pdfBytes);
+    console.log("PDF-ul a fost creat cu succes!");
+    res.render("ajut.ejs", { pdf: "/completat.pdf" });
+  });
 });
 
 app.get("/noutate/:id", (req, res) => {
@@ -167,6 +265,9 @@ app.get("/parteneri", (req, res) => {
 app.get("/contact", (req, res) => {
   res.render("contact.ejs");
 });
+app.get("/sustinatori", (req, res) => {
+  res.render("parteneri.ejs");
+});
 app.listen(process.env.PORT || port, "192.168.1.161", () => {
   console.log("Server open on 192.168.1.161:" + port);
 });
@@ -189,4 +290,66 @@ function getProjectById(id) {
 
 function getNumberOfFilesInFolder(folder) {
   return fs.readdirSync(folder).length;
+}
+
+function validCNP(p_cnp) {
+  var i = 0,
+    year = 0,
+    hashResult = 0,
+    cnp = [],
+    hashTable = [2, 7, 9, 1, 4, 6, 3, 5, 8, 2, 7, 9];
+  if (p_cnp.length !== 13) {
+    return false;
+  }
+  for (i = 0; i < 13; i++) {
+    cnp[i] = parseInt(p_cnp.charAt(i), 10);
+    if (isNaN(cnp[i])) {
+      return false;
+    }
+    if (i < 12) {
+      hashResult = hashResult + cnp[i] * hashTable[i];
+    }
+  }
+  hashResult = hashResult % 11;
+  if (hashResult === 10) {
+    hashResult = 1;
+  }
+  year = cnp[1] * 10 + cnp[2];
+  switch (cnp[0]) {
+    case 1:
+    case 2:
+      {
+        year += 1900;
+      }
+      break;
+    case 3:
+    case 4:
+      {
+        year += 1800;
+      }
+      break;
+    case 5:
+    case 6:
+      {
+        year += 2000;
+      }
+      break;
+    case 7:
+    case 8:
+    case 9:
+      {
+        year += 2000;
+        if (year > parseInt(new Date().getYear(), 10) - 14) {
+          year -= 100;
+        }
+      }
+      break;
+    default: {
+      return false;
+    }
+  }
+  if (year < 1800 || year > 2099) {
+    return false;
+  }
+  return cnp[12] === hashResult;
 }
