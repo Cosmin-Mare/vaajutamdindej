@@ -4,6 +4,7 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import path from "path";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
+import mysql from "mysql";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -33,50 +34,59 @@ const helveticaFont = await pdfDoc.embedFont(StandardFonts.Helvetica);
 const fontSize = 11;
 const pages = pdfDoc.getPages();
 const firstPage = pages[0];
+let posts = [];
+let members = [];
+let projects = [];
+let max_id = 0;
 
 const pageHeight = firstPage.getHeight();
 
-const db = new pg.Client({
-  user: "postgres",
-  password: "Lucian1998",
-  database: "VaAjutamDinDej",
+var connection = mysql.createConnection({
   host: "localhost",
-  port: 5432,
+  user: "root",
+  password: "Lucian1998",
+  typeCast: function castField(field, useDefaultTypeCasting) {
+    // We only want to cast bit fields that have a single-bit in them. If the field
+    // has more than one bit, then we cannot assume it is supposed to be a Boolean.
+    if (field.type === "BIT" && field.length === 1) {
+      var bytes = field.buffer();
+
+      // A Buffer in Node represents a collection of 8-bit unsigned integers.
+      // Therefore, our single "bit field" comes back as the bits '0000 0001',
+      // which is equivalent to the number 1.
+      return bytes[0] === 1;
+    }
+
+    return useDefaultTypeCasting();
+  },
 });
 
-let posts = [];
-
-db.connect();
-let max_id = 0;
-db.query("SELECT * FROM posts ORDER BY id ASC", (err, res) => {
-  if (err) {
-    console.log(err);
-  } else {
-    posts = res.rows;
-    posts.reverse();
-    max_id = posts.length;
-  }
+connection.connect(function (err) {
+  if (err) throw err;
+  connection.query(
+    "SELECT * FROM VaAjutamDinDej.posts",
+    function (err, result, fields) {
+      if (err) throw err;
+      posts = result;
+      posts.reverse();
+      max_id = posts.length;
+    }
+  );
+  connection.query(
+    "SELECT * FROM VaAjutamDinDej.members",
+    function (err, result, fields) {
+      if (err) throw err;
+      members = result;
+    }
+  );
+  connection.query(
+    "SELECT * FROM VaAjutamDinDej.projects",
+    function (err, result, fields) {
+      if (err) throw err;
+      projects = result;
+    }
+  );
 });
-
-let members = [];
-db.query("SELECT * FROM members ORDER BY id ASC ", (err, res) => {
-  if (err) {
-    console.log(err);
-  } else {
-    members = res.rows;
-  }
-});
-
-let projects = [];
-db.query("SELECT * FROM projects ORDER BY id ASC ", (err, res) => {
-  if (err) {
-    console.log(err);
-  } else {
-    projects = res.rows;
-  }
-  db.end();
-});
-
 app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -89,7 +99,7 @@ app.get("/despre-noi", (req, res) => {
   let council = [];
   let notCouncil = [];
   for (let i = 0; i < members.length; i++) {
-    if (members[i].is_council == 1) {
+    if (members[i].is_council) {
       council.push(members[i]);
     } else {
       notCouncil.push(members[i]);
@@ -114,8 +124,6 @@ app.get("/cum-pot-ajuta", (req, res) => {
 });
 
 app.post("/cum-pot-ajuta", (req, res) => {
-  console.log(req.body);
-
   if (validCNP(req.body.cnp) == false) {
     res.render("ajut.ejs", { cnpInvalid: true });
     return;
@@ -153,9 +161,6 @@ app.post("/cum-pot-ajuta", (req, res) => {
     localitate: localitate,
     doiAni: ani == "on" ? "X" : "",
   };
-
-  console.log("data", data);
-
   for (const field of Object.keys(textAndCoordinates)) {
     const [x, y] = textAndCoordinates[field];
     let text = data[field];
@@ -175,7 +180,6 @@ app.post("/cum-pot-ajuta", (req, res) => {
   var buf = Buffer.from(signature, "base64");
   fs.writeFileSync("image.png", buf, function (err) {
     if (err) throw err;
-    console.log("File saved.");
   });
 
   var image = pdfDoc.embedPng(fs.readFileSync("image.png")).then((image) => {
@@ -188,7 +192,6 @@ app.post("/cum-pot-ajuta", (req, res) => {
   });
   const pdfBytes = pdfDoc.save().then((pdfBytes) => {
     fs.writeFileSync("public/completat.pdf", pdfBytes);
-    console.log("PDF-ul a fost creat cu succes!");
     res.render("ajut.ejs", { pdf: "/completat.pdf" });
   });
 });
@@ -250,7 +253,10 @@ app.get("/proiect/:id", (req, res) => {
     photos.push("/images/projects/" + project.id + "/" + i + ".jpg");
   }
   const thumbnail = "/images/projects/" + project.id + "/thumbnail.jpg";
-  const contents = content.split("\n");
+  var contents = content.split("\n");
+  if (contents.length == 1) {
+    contents = content.split("\r");
+  }
   res.render("project.ejs", {
     title: title,
     contents: contents,

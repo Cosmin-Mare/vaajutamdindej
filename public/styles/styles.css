@@ -567,11 +567,7 @@ textarea:focus {
   margin-right: 5%;
 }
 
-canvas#signature-pad {
-  width: 100%;
-  height: 200px;
-  border-radius: 1rem;
-  background: rgb(232, 230, 230);
+canvas#signature-canvas {
   cursor: crosshair;
 }
 
@@ -599,6 +595,41 @@ canvas#signature-pad {
   justify-content: center;
   align-items: center;
   gap: 5px;
+}
+
+.sponsori-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+  gap: 3%;
+  justify-content: center;
+  align-items: center;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 20px;
+}
+
+.sponsor {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  text-align: center;
+  height: 300px;
+}
+
+.parteneri a {
+  text-decoration: none;
+  color: black;
+}
+
+.sponsori-grid img {
+  width: 100%;
+  height: fit-content;
+  object-fit: cover;
+}
+
+.sponsori-grid {
+  margin-bottom: 100px;
 }
 
 @media screen and (max-width: 700px) {
@@ -647,6 +678,13 @@ canvas#signature-pad {
   .submit-button {
     width: 100%;
   }
+  .sponsori-grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px;
+  }
+  .sponsor {
+    height: fit-content;
+  }
 }
 
 @media screen and (min-width: 990px) {
@@ -666,6 +704,9 @@ canvas#signature-pad {
 @media screen and (max-width: 1200px) {
   #donate {
     background-color: white;
+  }
+  .sponsori-grid {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
 @media screen and (max-width: 990px) {
@@ -739,6 +780,10 @@ canvas#signature-pad {
     margin-left: 5%;
     margin-right: 5%;
     gap: 15px;
+  }
+  .sponsori-grid.parteneri {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: repeat(7, 1fr);
   }
 }
 
@@ -835,5 +880,8 @@ canvas#signature-pad {
   .ajut button {
     width: 100% !important;
     margin: 0 !important;
+  }
+  #signature-canvas {
+    width: 100% !important;
   }
 }

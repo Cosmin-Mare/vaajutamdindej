@@ -1,17 +1,16 @@
 <%- include("header.ejs") %>
 <section id="main">
-  <div
-    class="container-fluid carousel-container bg-white"
-    style="--bs-bg-opacity: 0.65"
-  >
-    <h1 class="post-title"><%= title %></h1>
-  </div>
   <img
     src="<%= thumbnail %>"
     class="d-block w-100 header-img"
     id="carousel-img-1"
     alt="..."
   />
+  <div class="col-12 d-flex justify-content-center pt-5">
+    <div class="col-10">
+      <h1 class="post-title projects-title"><%= title %></h1>
+    </div>
+  </div>
 </section>
 
 <section class="post-content">
