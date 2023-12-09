@@ -1,0 +1,28 @@
+<%- include("header.ejs") %>
+<div class="px-4 py-5 my-5 text-center">
+  <h1 class="display-5 fw-bold text-body-emphasis projects-title">
+    Eroare 404
+  </h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-4">
+      Din păcate, pagina pe care doriți să o accesați nu există (<%= url %>)
+    </p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <button
+        type="button"
+        class="btn btn-primary-pink-round btn-lg"
+        onclick="window.location.href='/'"
+      >
+        Revino la pagina principală
+      </button>
+    </div>
+  </div>
+</div>
+<style>
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+</style>
+<%- include("footer.ejs") %>
