@@ -3,7 +3,7 @@ import fs from "fs";
 import { fileURLToPath } from "url";
 import path from "path";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
-import mysql from "mysql";
+import mysql2 from "mysql2";
 
 import dotenv from "dotenv";
 import { setTimeout } from "timers/promises";
@@ -45,7 +45,7 @@ let max_id = 0;
 
 const pageHeight = firstPage.getHeight();
 
-var connection = mysql.createConnection({
+var connection = mysql2.createConnection({
   host: process.env.DB_HOST,
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
