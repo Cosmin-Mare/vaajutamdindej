@@ -4,9 +4,10 @@ import { fileURLToPath } from "url";
 import path from "path";
 import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import mysql2 from "mysql2";
-
+import tedious from "tedious";
 import dotenv from "dotenv";
 import { setTimeout } from "timers/promises";
+import { request } from "http";
 
 dotenv.config();
 
@@ -44,53 +45,108 @@ let projects = [];
 let max_id = 0;
 
 const pageHeight = firstPage.getHeight();
-
-var connection = mysql2.createConnection({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  typeCast: function castField(field, useDefaultTypeCasting) {
-    // We only want to cast bit fields that have a single-bit in them. If the field
-    // has more than one bit, then we cannot assume it is supposed to be a Boolean.
-    if (field.type === "BIT" && field.length === 1) {
-      var bytes = field.buffer();
-
-      // A Buffer in Node represents a collection of 8-bit unsigned integers.
-      // Therefore, our single "bit field" comes back as the bits '0000 0001',
-      // which is equivalent to the number 1.
-      return bytes[0] === 1;
-    }
-
-    return useDefaultTypeCasting();
+var Connection = tedious.Connection;
+var AzureConfig = {
+  authentication: {
+    options: {
+      userName: process.env.DB_USER + "@" + process.env.DB_HOST,
+      password: process.env.DB_PASSWORD,
+    },
+    type: "default",
   },
+  server: process.env.DB_HOST,
+  options: {
+    database: "vaajutamdindejdb",
+    encrypt: true,
+    debug: {
+      packet: true,
+      data: true,
+      payload: true,
+      token: true,
+      log: true,
+    },
+  },
+};
+var connection = new Connection(AzureConfig);
+connection.connect();
+connection.on("connect", function (err) {
+  // If no error, then good to proceed.
+  console.log("Connected");
+  var Request = tedious.Request;
+  var TYPES = tedious.TYPES;
+
+  if (err) {
+    console.log(err);
+  }
+
+  var request = new Request("Select * from VaAjutamDinDej.posts", function (
+    err
+  ) {
+    if (err) {
+      console.log(err);
+    }
+  });
+  posts = [];
+  request.on("row", function (columns) {
+    let post = {
+      id: columns[0].value,
+      title: columns[1].value,
+      content: columns[2].value,
+      date: columns[3].value,
+      link: columns[4].value,
+    };
+    posts.push(post);
+  });
+  connection.execSql(request);
+
+  var request2 = new Request("Select * from VaAjutamDinDej.members", function (
+    err
+  ) {
+    if (err) {
+      console.log(err);
+    }
+  });
+  members = [];
+  request2.on("row", function (columns) {
+    let member = {
+      id: columns[0].value,
+      name: columns[1].value,
+      status: columns[2].value,
+      is_council: bufferToBinary(columns[3].value),
+    };
+    members.push(member);
+  });
+  request.on("requestCompleted", function () {
+    posts.reverse();
+    connection.execSql(request2);
+  });
+
+  var request3 = new Request("Select * from VaAjutamDinDej.projects", function (
+    err
+  ) {
+    if (err) {
+      console.log(err);
+    }
+  });
+  projects = [];
+  request3.on("row", function (columns) {
+    let project = {
+      id: columns[0].value,
+      title: columns[1].value,
+      content: columns[2].value,
+      type: columns[3].value,
+    };
+    projects.push(project);
+  });
+
+  request3.on("requestCompleted", function () {
+    connection.close();
+  });
+  request2.on("requestCompleted", function () {
+    connection.execSql(request3);
+  });
 });
 
-connection.connect(function (err) {
-  if (err) throw err;
-  connection.query(
-    "SELECT * FROM VaAjutamDinDej.posts",
-    function (err, result, fields) {
-      if (err) throw err;
-      posts = result;
-      posts.reverse();
-      max_id = posts.length;
-    }
-  );
-  connection.query(
-    "SELECT * FROM VaAjutamDinDej.members",
-    function (err, result, fields) {
-      if (err) throw err;
-      members = result;
-    }
-  );
-  connection.query(
-    "SELECT * FROM VaAjutamDinDej.projects",
-    function (err, result, fields) {
-      if (err) throw err;
-      projects = result;
-    }
-  );
-});
 app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -297,7 +353,7 @@ app.get("*", (req, res) => {
   res.render("404.ejs", { url: req.url.split("/")[1] });
 });
 app.listen(process.env.PORT || port, () => {
-  console.log("Server open on 192.168.1.161:" + port);
+  console.log("Running");
 });
 
 function getPostById(id) {
@@ -380,4 +436,8 @@ function validCNP(p_cnp) {
     return false;
   }
   return cnp[12] === hashResult;
+}
+
+function bufferToBinary(buffer) {
+  return parseInt(buffer.toString("hex"), 16).toString(2) == 1;
 }
