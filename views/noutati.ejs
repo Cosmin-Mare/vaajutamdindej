@@ -15,9 +15,25 @@
       </p>
       <div class="d-grid gap-2 d-sm-flex justify-content-sm-center"></div>
     </div>
-    <form class="row d-flex justify-content-center email-form">
+    <% if (locals.email) { %>
+    <div class="projects-title">
+      <h1>V-ați abonat cu succes la newsletter! Vă mulțumim pentru interes!</h1>
+    </div>
+    <% } else { %>
+    <form
+      class="row d-flex justify-content-center email-form"
+      action="/noutati"
+      method="post"
+    >
       <div class="col-sm-12 col-lg-5">
-        <input type="text" class="form-control" placeholder="Email" />
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Email"
+          id="email"
+          name="email"
+          required
+        />
       </div>
       <div class="col-sm-12 col-lg-4">
         <button type="submit" class="btn btn-primary-pink-round btn-lg px-4">
@@ -25,6 +41,7 @@
         </button>
       </div>
     </form>
+    <% } %>
   </div>
 </section>
 <section id="posts">
@@ -35,7 +52,7 @@
         <div class="col">
           <div class="card shadow-sm">
             <a class="post-img-link" href="/noutate/<%= post.id %>">
-              <img src="/images/posts/<%= post.id %>/thumbnail.jpg" />
+              <img src="/images/posts/<%= post.id %>/thumbnail.webp" />
             </a>
             <div class="card-body">
               <h2 class="card-text"><%= post.title %></h2>
