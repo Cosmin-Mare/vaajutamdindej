@@ -227,11 +227,24 @@ footer {
   max-width: 100vw;
 }
 
+.header-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
 .carousel-item > img,
 .header-img {
   max-width: 100vw;
   object-fit: cover;
   height: 93vh;
+}
+
+.project-img {
+  width: 60vw !important;
+  object-fit: cover;
+  margin-bottom: 80px;
 }
 
 .footer-logo {
@@ -611,7 +624,7 @@ canvas#signature-canvas {
 .sponsor {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   text-align: center;
   height: 300px;
@@ -629,7 +642,11 @@ canvas#signature-canvas {
 }
 
 .sponsori-grid {
-  margin-bottom: 100px;
+  margin-bottom: 32rem;
+}
+
+.noname {
+  margin-bottom: 2.5rem;
 }
 
 @media screen and (max-width: 700px) {
@@ -652,6 +669,9 @@ canvas#signature-canvas {
   .carousel-item > img,
   .header-img {
     height: 87.5vh !important;
+  }
+  .project-img {
+    height: unset !important;
   }
   .post-title {
     font-size: 2rem;
@@ -681,6 +701,7 @@ canvas#signature-canvas {
   .sponsori-grid {
     grid-template-columns: 1fr !important;
     gap: 20px;
+    margin-bottom: 0rem !important;
   }
   .sponsor {
     height: fit-content;
@@ -707,6 +728,12 @@ canvas#signature-canvas {
   }
   .sponsori-grid {
     grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+  .sponsori-grid {
+    margin-bottom: 50rem;
+  }
+  .nav-link {
+    font-size: 1.1rem !important;
   }
 }
 @media screen and (max-width: 990px) {
@@ -781,9 +808,15 @@ canvas#signature-canvas {
     margin-right: 5%;
     gap: 15px;
   }
-  .sponsori-grid.parteneri {
+  .sponsori {
+    margin-bottom: 80rem;
+  }
+  .sponsori-grid {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: repeat(7, 1fr);
+  }
+  .project-img {
+    width: 90vw !important;
   }
 }
 
@@ -889,5 +922,20 @@ canvas#signature-canvas {
 @media screen and (min-width: 700px) {
   .parteneri {
     margin-bottom: 200px !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .project-img {
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 1070px) {
+  .navbar-nav {
+    margin-left: 0px;
+  }
+  .navbar-brand {
+    margin-right: 0px;
   }
 }

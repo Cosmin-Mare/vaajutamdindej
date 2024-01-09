@@ -443,7 +443,8 @@ app.get("/proiect/:id", (req, res) => {
     photos.push("/images/projects/" + project.id + "/" + i + ".webp");
   }
   let thumbnail = "/images/projects/" + project.id + "/thumbnail.webp";
-  var contents = content.split("\n");
+  var contents = content.split("\\n");
+  console.log(contents);
   if (contents.length == 1) {
     contents = content.split("\r");
   }
