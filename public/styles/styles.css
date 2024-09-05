@@ -1,6 +1,16 @@
 body {
   font-family: "Source Sans 3", sans-serif;
 }
+a {
+  color: #e20074 !important;
+  transition: color 0.2s ease-in-out;
+}
+a:hover {
+  color: #cb0068 !important;
+}
+ol {
+  font-size: 1.2rem;
+}
 #header {
   background-color: #f8f9fa !important;
 }
@@ -487,6 +497,10 @@ svg {
   padding-right: 5%;
 }
 
+.council-grid {
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
 .member {
   display: flex;
   flex-direction: column;
@@ -649,6 +663,24 @@ canvas#signature-canvas {
   margin-bottom: 2.5rem;
 }
 
+.donation-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 1%;
+  margin-left: 3.5%;
+  margin-right: 3.5%;
+}
+
+.donation-button-element {
+  width: 100% !important;
+}
+
+.external-donation-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2%;
+}
+
 @media screen and (max-width: 700px) {
   .motiv-text p {
     font-size: 1.4rem !important;
@@ -735,6 +767,9 @@ canvas#signature-canvas {
   .nav-link {
     font-size: 1.1rem !important;
   }
+  .external-donation-container {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 @media screen and (max-width: 990px) {
   .navbar-nav {
@@ -818,6 +853,10 @@ canvas#signature-canvas {
   .project-img {
     width: 90vw !important;
   }
+  .external-donation-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }
 
 @media screen and (min-width: 1200px) {
@@ -854,6 +893,12 @@ canvas#signature-canvas {
 @media screen and (max-width: 900px) {
   .carousel-item > img {
     height: calc(100vh - 105px) !important;
+  }
+  .donation-buttons {
+    grid-template-columns: 1fr !important;
+    margin-bottom: 100px !important;
+    margin-right: 0 !important;
+    margin-left: 0 !important;
   }
 }
 
@@ -893,6 +938,13 @@ canvas#signature-canvas {
 
   .motiv img {
     width: 80%;
+  }
+  .donation-buttons {
+    grid-template-columns: 1fr 1fr;
+    grid-row-gap: 30px;
+    gap: 10%;
+    margin-left: 8.5%;
+    margin-right: 8.5%;
   }
 }
 

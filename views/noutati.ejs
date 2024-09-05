@@ -51,13 +51,20 @@
         <% posts.forEach(post => { %>
         <div class="col">
           <div class="card shadow-sm">
-            <a class="post-img-link" href="/noutate/<%= post.id %>">
+            <a
+              class="post-img-link"
+              target="_blank"
+              href="/noutate/<%= post.id %>"
+            >
               <img src="/images/posts/<%= post.id %>/thumbnail.webp" />
             </a>
             <div class="card-body">
               <h2 class="card-text"><%= post.title %></h2>
               <div class="d-flex justify-content-between align-items-center">
-                <a class="text-body-secondary" href="<%= post.link %>"
+                <a
+                  class="text-body-secondary"
+                  target="_blank"
+                  href="<%= post.link %>"
                   ><svg
                     xmlns="http://www.w3.org/2000/svg"
                     x="0px"
@@ -112,7 +119,7 @@
         <button
           type="button"
           class="btn btn-primary-pink-round btn-lg px-4 gap-3 mx-5"
-          onclick="window.location.href='/donez'"
+          onclick="window.location.href='/cum-pot-ajuta#donez'"
         >
           Donează
         </button>

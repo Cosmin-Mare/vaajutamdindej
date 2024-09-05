@@ -9,37 +9,49 @@
       height="100"
     />
     <h1 class="display-5 fw-bold text-body-emphasis projects-title">
-      Mulțumim pentru Inimile Generoase
+      Mulțumim pentru susținere!
     </h1>
     <div class="col-lg-8 mx-auto">
       <p class="lead mb-4">
-        Vă adresăm sincere mulțumiri pentru implicarea voastră activă și
-        generozitatea pe care o arătați în sprijinul nostru. Comunitatea noastră
-        se întărește prin contribuția fiecăruia dintre voi, iar fiecare gest de
-        binefacere contează. Pentru cei dintre voi care doresc să sprijine
-        proiectele noastre și prin intermediul formei fiscale, vă informăm că
-        puteți direcționa 3.5% din impozitul pe venit către organizația noastră
-        completând mai jos Formularul 230. Acest gest simplu, dar extrem de
-        valoros, reprezintă o modalitate eficientă de a susține cauzele în care
-        credeți, fără a implica costuri suplimentare pentru voi. Împreună putem
-        face o diferență semnificativă în viețile celor nevoiași!
+        Bine ai venit pe pagina noastră dedicată sprijinului comunitar! Aici,
+        fiecare gest mic sau mare al tău are un impact semnificativ în sprijinul
+        cauzelor noastre. Poți contribui prin donații online sau completând
+        formularul 230 pentru a redirecționa 3,5 % din impozitul tău. Dacă
+        reprezinți o companie, avem opțiuni personalizate pentru implicarea ta
+        socială. Și pentru că suntem convinși că acțiunile spun mai mult decât
+        cuvintele, te invităm cu căldură să devii voluntar. Împreună, construim
+        o comunitate mai puternică și mai unită!
       </p>
-      <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-        <button
-          type="button"
-          class="btn btn-primary-pink-round btn-lg px-4 gap-3 mx-5 col-lg-4 col-sm-5"
-          onclick="window.location.href='#formular-230'"
-        >
-          Completează formularul 230
-        </button>
-        <button
-          type="button"
-          class="btn btn-secondary-pink btn-lg px-4 mx-5 col-lg-4 col-sm-5"
-          onclick="window.location.href='/donez'"
-        >
-          Donează
-        </button>
-      </div>
+    </div>
+    <div class="donation-buttons">
+      <button
+        type="button"
+        class="btn btn-primary-pink-round btn-lg donation-button-element"
+        onclick="window.location.href='#formular-230'"
+      >
+        Completează formularul 230
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary-pink btn-lg donation-button-element"
+        onclick="window.location.href='#donez'"
+      >
+        Donează
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary-pink btn-lg donation-button-element"
+        onclick="window.location.href='#companii'"
+      >
+        Pentru companii
+      </button>
+      <button
+        type="button"
+        class="btn btn-secondary-pink btn-lg donation-button-element"
+        onclick="window.location.href='#voluntar'"
+      >
+        Fii voluntar
+      </button>
     </div>
   </div>
 </section>
@@ -213,4 +225,330 @@
     </div>
   </form>
 </section>
-<% } %> <%- include("footer.ejs") %>
+<% } %>
+<hr />
+<section id="donez">
+  <div class="px-4 my-5">
+    <img
+      class="d-block mx-auto mb-4"
+      src="/images/logo.png"
+      alt=""
+      width="100"
+      height="100"
+    />
+    <h1 class="display-5 fw-bold text-body-emphasis projects-title text-center">
+      Împreună dăruim zâmbete😊
+    </h1>
+    <div class="col-lg-10 mx-auto text-center mb-5 pb-5">
+      <p class="lead mb-4">
+        Bun venit pe Pagina de Donații, un loc special unde fiecare gest de
+        generozitate aduce un zâmbet și contribuie la modelarea unui viitor mai
+        luminos pentru comunitatea noastră. Suntem plini de recunoștință pentru
+        sprijinul pe care îl oferiți și pentru că ați ales să vă alăturați
+        misiunii noastre de a aduce bucurie și schimbări pozitive. Fiecare
+        donație aduce cu sine promisiunea unui impact real în viețile celor în
+        nevoie și în proiectele noastre dedicate dezvoltării comunitare. Vă
+        îndemnăm să explorați opțiunile de donare și să deveniți parte din
+        povestea noastră. Fiecare contribuție, indiferent de dimensiune, este
+        primită cu căldură și recunoștință. Mulțumim că sunteți alături de noi
+        în această călătorie, iar împreună putem realiza lucruri extraordinare!
+      </p>
+      <div class="donation-options-container">
+        <h2 class="display-5 fw-bold text-body-emphasis donation-subtitle">
+          Alege cu cat vrei sa contribui
+        </h2>
+        <div class="form-check recurent-form">
+          <input
+            class="form-check-input recurent-check"
+            type="checkbox"
+            value=""
+            id="flexCheckDefault"
+          />
+          <label class="form-check-label" for="flexCheckDefault">
+            Donație recurentă
+          </label>
+        </div>
+        <button
+          type="button"
+          class="btn btn-primary-pink-round donation-option"
+          onclick="redirectToDonationPage(200)"
+        >
+          200 RON
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary-pink-round donation-option"
+          onclick="redirectToDonationPage(100)"
+        >
+          100 RON
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary-pink-round donation-option"
+          onclick="redirectToDonationPage(50)"
+        >
+          50 RON
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary-pink-round donation-option"
+          onclick="redirectToDonationPage(25)"
+        >
+          25 RON
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary-pink-round donation-option"
+          onclick="redirectToDonationPage(10)"
+        >
+          10 RON
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary-pink-round donation-option"
+          onclick="redirectToDonationPage(-1)"
+        >
+          Altă sumă
+        </button>
+      </div>
+    </div>
+    <div class="col-sm-10 col-xl-12 mx-auto mx-xl-3" id="transfer">
+      <div class="external-donation-container">
+        <div>
+          <h1
+            class="display-5 fw-bold text-body-emphasis projects-title"
+            style="font-size: 2rem"
+          >
+            Doneaza prin transfer bancar
+          </h1>
+          <p class="lead mb-0">ASOCIAȚIA VĂ AJUTĂM DIN DEJ,</p>
+          <p class="lead mb-0">CIF: 42960042</p>
+          <p class="lead mb-0">Cont RON: RO37BTRLRONCRT0565463401</p>
+          <p class="lead mb-0">Cont EURO: RO84BTRLEURCRT0565463401</p>
+        </div>
+        <div>
+          <h1
+            class="display-5 fw-bold text-body-emphasis projects-title"
+            style="font-size: 2rem"
+          >
+            Doneaza prin BT Pay
+          </h1>
+          <p class="lead"><a href="tel:+40723290245">0723290245</a></p>
+        </div>
+        <div>
+          <h1
+            class="display-5 fw-bold text-body-emphasis projects-title"
+            style="font-size: 2rem"
+          >
+            Donează prin Revolut
+          </h1>
+          <button
+            type="button"
+            class="btn btn-primary-pink-round btn-lg external-payment-button"
+            onclick="window.open('https://revolut.me/cristimare', '_blank')"
+          >
+            Donează
+          </button>
+        </div>
+        <div>
+          <h1
+            class="display-5 fw-bold text-body-emphasis projects-title"
+            style="font-size: 2rem"
+          >
+            Donează prin Paypal
+          </h1>
+          <button
+            type="button"
+            class="btn btn-primary-pink-round btn-lg external-payment-button"
+            onclick="window.open('https://www.paypal.com/donate?hosted_button_id=9U6DZGHKFV2LE', '_blank')"
+          >
+            Donează
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    function redirectToDonationPage(amount) {
+      const recurrentCheck = document.querySelector(".recurent-check");
+      let isReccurent = recurrentCheck.checked;
+      console.log(isReccurent);
+      switch (amount) {
+        case 200:
+          if (isReccurent) {
+            window.open("https://buy.stripe.com/9AQ29LbOr8LI3qEfZ8", "_blank");
+          } else {
+            window.open(
+              "https://donate.stripe.com/8wM3dP9Gj0fc8KY004",
+              "_blank"
+            );
+          }
+          break;
+        case 100:
+          if (isReccurent) {
+            window.open("https://buy.stripe.com/dR64hTdWz7HE9P2bIR", "_blank");
+          } else {
+            window.open(
+              "https://donate.stripe.com/fZeeWxbOrgea3qE147",
+              "_blank"
+            );
+          }
+          break;
+        case 50:
+          if (isReccurent) {
+            window.open("https://buy.stripe.com/dR6cOpg4Hd1Y0es008", "_blank");
+          } else {
+            window.open(
+              "https://donate.stripe.com/9AQ15H3hVbXUgdqcMO",
+              "_blank"
+            );
+          }
+          break;
+        case 25:
+          if (isReccurent) {
+            window.open("https://buy.stripe.com/5kAbKl9Gj0fc0es4gn", "_blank");
+          } else {
+            window.open(
+              "https://donate.stripe.com/dR6g0B19NbXUf9m8wx",
+              "_blank"
+            );
+          }
+          break;
+        case 10:
+          if (isReccurent) {
+            window.open("https://buy.stripe.com/14k7u54lZaTQe5i14a", "_blank");
+          } else {
+            window.open(
+              "https://donate.stripe.com/aEU3dP9Gj2nkf9m144",
+              "_blank"
+            );
+          }
+          break;
+        default:
+          if (isReccurent) {
+            alert("Nu puteți face donații recurente pentru alte sume");
+          } else {
+            window.open(
+              "https://donate.stripe.com/6oE8y9g4H7HE8KY9AF",
+              "_blank"
+            );
+          }
+          break;
+      }
+    }
+  </script>
+</section>
+
+<section id="companii">
+  <hr />
+  <div class="px-4 my-5">
+    <img
+      class="d-block mx-auto mb-4"
+      src="/images/logo.png"
+      alt=""
+      width="100"
+      height="100"
+    />
+
+    <div class="col-lg-10 mx-auto">
+      <h1 class="display-5 fw-bold text-body-emphasis projects-title">
+        Pentru companii
+      </h1>
+      <p class="lead projects-title" style="font-size: 1.2rem">
+        DIRECȚIONEAZĂ 20% DIN IMPOZIT CĂTRE COPII, FĂRĂ NICIUN COST PENTRU TINE!
+      </p>
+      <p class="lead">
+        O masă caldă, grija pentru sănătate, o haină nouă, un acoperiș deasupra
+        capului, acces la educație, șansa de a construi un viitor mai bun. Toate
+        acestea sunt daruri neprețuite, la care, din păcate, nu toți oamenii au
+        acces.
+      </p>
+      <p class="lead">Dar pentru unii dintre ei, EROUL poți fi chiar tu!</p>
+      <p class="lead">
+        Este foarte simplu să te implici: 20% din impozitul pe profit sau venit
+        datorat statului, în funcție de cifra de afaceri, îl poți direcționa
+        fără niciun cost către Asociația Vă Ajutăm din Dej. Legea sponsorizării
+        îți dă dreptul să alegi ce să faci cu o parte din taxele care sunt
+        colectate de către stat. Este un dar pe care îl poți face în fiecare an
+        copiilor sau vârstnicilor care au nevoie de sprijin. Poți direcționa
+        trimestrial, însă nu mai târziu de 31 decembrie.
+      </p>
+      <p class="lead">Care sunt pașii sponsorizării?</p>
+      <ol>
+        <li>
+          Calculați suma aferentă celor 20% din impozitul pe venit/profit al
+          companiei, în limita a 0,75% din cifra de afaceri
+        </li>
+        <li>
+          Descărcați și completați
+          <a
+            target="_blank"
+            href="https://docs.google.com/document/d/1X6phA3AZVLeSxdtzyncSnLscWUiGPNXq/edit#heading=h.gjdgxs"
+            style="font-size: 1.3rem"
+            >Contractul de sponsorizare</a
+          >
+          în 2 exemplare și trimiteți-l la
+          <a href="mailto:vaajutamdindej@gmail.com" style="font-size: 1.3rem"
+            >vaajutamdindej@gmail.com</a
+          >
+          sau pe whatsapp la
+          <a href="tel:+40723290245" style="font-size: 1.3rem">0723290245</a>
+        </li>
+        <li>
+          Efectuați plata prin
+          <a href="#transfer" style="font-size: 1.3rem">transfer bancar</a>.
+        </li>
+      </ol>
+      <p class="lead">
+        Asociația Vă Ajutăm din Dej este înregistrată în Registrul entităților /
+        unităților de cult ANAF pentru acordarea deducerii fiscale începând cu
+        anul 2020.
+        <a
+          target="_blank"
+          href="https://drive.google.com/file/d/1vCE2CZBzZvWYxmbUYjFsnX-Ay0ARJKcr/view"
+          >Găsiți decizia aici</a
+        >
+      </p>
+    </div>
+  </div>
+  <hr />
+</section>
+
+<section id="voluntar">
+  <div class="px-4 my-5 text-center">
+    <img
+      class="d-block mx-auto mb-4"
+      src="/images/logo.png"
+      alt=""
+      width="100"
+      height="100"
+    />
+    <h1 class="display-5 fw-bold text-body-emphasis projects-title">
+      Fii voluntar
+    </h1>
+    <div class="col-lg-10 mx-auto mb-5 pb-5">
+      <h1
+        class="display-5 fw-bold text-body-emphasis projects-title"
+        style="font-size: 1.5rem"
+      >
+        Mulțumim tare mult pentru dorința de implicare!
+      </h1>
+      <p class="lead">
+        Copiii au nevoie de modele și de oameni generoși care să le ofere puțin
+        din timpul lor. Dacă dorești să ne ajuți și să te alături echipei
+        noastre de voluntari, te așteptăm cu drag. Asociația Vă Ajutăm din Dej
+        este locul potrivit pentru a-ți folosi energia, cunoștințele, iar
+        bucuria celor pe care-i ajutăm te va răsplăti din plin. Voluntariatul
+        înseamnă să dăruiești și o poți face de oriunde te afli.
+      </p>
+      <p class="lead">
+        Trimite-ne un e-mail cu datele tale de contact și câteva cuvinte prin
+        care să ne comunici intenția ta de voluntariat la
+        <a href="mailto:vaajutamdindej@gmail.com" style="font-size: 1.3rem"
+          >vaajutamdindej@gmail.com</a
+        >
+      </p>
+    </div>
+  </div>
+</section>
+<%- include("footer.ejs") %>

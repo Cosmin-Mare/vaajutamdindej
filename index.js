@@ -75,8 +75,6 @@ var AzureConfig = {
 var connection = new Connection(AzureConfig);
 connection.connect();
 connection.on("connect", function (err) {
-  // If no error, then good to proceed.
-  console.log("Connected");
   var Request = tedious.Request;
   var TYPES = tedious.TYPES;
 
@@ -84,13 +82,14 @@ connection.on("connect", function (err) {
     console.log(err);
   }
 
-  var request = new Request("Select * from VaAjutamDinDej.posts", function (
-    err
-  ) {
-    if (err) {
-      console.log(err);
+  var request = new Request(
+    "Select * from VaAjutamDinDej.posts ORDER BY date DESC",
+    function (err) {
+      if (err) {
+        console.log(err);
+      }
     }
-  });
+  );
   posts = [];
   request.on("row", function (columns) {
     let post = {
@@ -122,7 +121,6 @@ connection.on("connect", function (err) {
     members.push(member);
   });
   request.on("requestCompleted", function () {
-    posts.reverse();
     connection.execSql(request2);
   });
 
@@ -178,10 +176,6 @@ app.get("/despre-noi", (req, res) => {
 
 app.get("/motive", (req, res) => {
   res.render("motive.ejs");
-});
-
-app.get("/donez", (req, res) => {
-  res.render("donez.ejs");
 });
 
 app.get("/cum-pot-ajuta", (req, res) => {
@@ -309,7 +303,7 @@ app.post("/cum-pot-ajuta", (req, res) => {
         .embedPng(fs.readFileSync("image.png"))
         .then((image) => {
           firstPage.drawImage(image, {
-            x: 390,
+            x: 125,
             y: 142,
             width: 150,
             height: 10,
@@ -342,7 +336,11 @@ app.get("/noutate/:id", (req, res) => {
     photos.push("/images/posts/" + post.id + "/" + i + ".webp");
   }
   let thumbnail = "/images/posts/" + post.id + "/thumbnail.webp";
-  let contents = content.split("\n");
+  let contents = content.split("\\n");
+  if (contents.length == 1) {
+    contents = content.split("\r");
+    if (contents.length == 1) contents = content.split("\n");
+  }
   res.render("post.ejs", {
     title: title,
     contents: contents,
@@ -444,7 +442,6 @@ app.get("/proiect/:id", (req, res) => {
   }
   let thumbnail = "/images/projects/" + project.id + "/thumbnail.webp";
   var contents = content.split("\\n");
-  console.log(contents);
   if (contents.length == 1) {
     contents = content.split("\r");
   }
