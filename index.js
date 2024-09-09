@@ -61,7 +61,7 @@ var AzureConfig = {
   },
   server: process.env.DB_HOST,
   options: {
-    database: "vaajutamdindejdb",
+    database: "vaajutamdindejdb_2024-09-04T17-01Z",
     encrypt: true,
     debug: {
       packet: true,
@@ -219,7 +219,7 @@ app.post("/cum-pot-ajuta", (req, res) => {
       },
       server: process.env.DB_HOST,
       options: {
-        database: "vaajutamdindejdb",
+        database: "vaajutamdindejdb_2024-09-04T17-01Z",
         encrypt: true,
         debug: {
           packet: true,
@@ -373,7 +373,7 @@ app.post("/noutati", (req, res) => {
       },
       server: process.env.DB_HOST,
       options: {
-        database: "vaajutamdindejdb",
+        database: "vaajutamdindejdb_2024-09-04T17-01Z",
         encrypt: true,
         debug: {
           packet: true,
